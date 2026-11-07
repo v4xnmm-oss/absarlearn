@@ -1,1 +1,102 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AbsarLearn - Learn for Free</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f5f7fc;color:#17233c}
+header{background:#142b55;color:white;padding:22px 18px}
+.logo{font-size:27px;font-weight:bold}
+header p{color:#d4e2ff;margin-bottom:0}
+main{max-width:950px;margin:auto;padding:20px}
+.hero{background:linear-gradient(130deg,#174b9b,#397bea);color:white;padding:28px 22px;border-radius:18px}
+.hero h1{font-size:29px;margin:0 0 10px}
+.hero p{line-height:1.6}
+.search{width:100%;padding:15px;border:1px solid #dce2ed;border-radius:12px;font-size:16px;margin:22px 0}
+h2{font-size:21px}
+.subjects{display:flex;gap:10px;flex-wrap:wrap}
+.subject{background:white;border:1px solid #dce2ed;padding:11px 16px;border-radius:22px;cursor:pointer}
+.subject.active{background:#174b9b;color:white}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px;margin-top:16px}
+.card{background:white;padding:19px;border-radius:15px;border:1px solid #e5eaf2}
+.card .emoji{font-size:30px}
+.card h3{margin:12px 0 7px}
+.card p{color:#64718a;font-size:14px}
+.card button{background:#174b9b;color:white;border:0;padding:11px 16px;border-radius:9px;cursor:pointer}
+footer{text-align:center;padding:28px;color:#718096}
+</style>
+</head>
+<body>
+<header>
+<div class="logo">📘 AbsarLearn</div>
+<p>Free online study materials for every student.</p>
+</header>
+<main>
+<section class="hero">
+<h1>Learn More. Achieve More.</h1>
+<p>Explore free notes, PDF books and study materials. Your learning journey starts here!</p>
+</section>
+
+<input class="search" id="search" placeholder="🔍 Search notes and study materials...">
+
+<h2>Explore Subjects</h2>
+<div class="subjects">
+<button class="subject active" onclick="filter('All',this)">All</button>
+<button class="subject" onclick="filter('Science',this)">Science</button>
+<button class="subject" onclick="filter('Math',this)">Math</button>
+<button class="subject" onclick="filter('English',this)">English</button>
+<button class="subject" onclick="filter('Other',this)">Other</button>
+</div>
+
+<h2>Study Materials</h2>
+<div class="grid" id="materials">
+<div class="card" data-subject="Science">
+<div class="emoji">🔬</div>
+<h3>Science Notes</h3>
+<p>Science study materials and notes.</p>
+<button onclick="alert('Study materials coming soon!')">View Materials</button>
+</div>
+<div class="card" data-subject="Math">
+<div class="emoji">📐</div>
+<h3>Mathematics</h3>
+<p>Math notes, formulas and practice.</p>
+<button onclick="alert('Study materials coming soon!')">View Materials</button>
+</div>
+<div class="card" data-subject="English">
+<div class="emoji">📖</div>
+<h3>English Notes</h3>
+<p>Grammar, literature and learning resources.</p>
+<button onclick="alert('Study materials coming soon!')">View Materials</button>
+</div>
+<div class="card" data-subject="Other">
+<div class="emoji">📚</div>
+<h3>Other Materials</h3>
+<p>More educational resources for students.</p>
+<button onclick="alert('Study materials coming soon!')">View Materials</button>
+</div>
+</div>
+</main>
+<footer>© 2026 AbsarLearn | Learn for Free ❤️</footer>
+<script>
+let category='All';
+function filter(value,button){
+category=value;
+document.querySelectorAll('.subject').forEach(b=>b.classList.remove('active'));
+button.classList.add('active');
+searchMaterials();
+}
+function searchMaterials(){
+let q=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('.card').forEach(card=>{
+let matches=category==='All'||card.dataset.subject===category;
+card.style.display=matches&&card.innerText.toLowerCase().includes(q)?'block':'none';
+});
+}
+document.getElementById('search').addEventListener('input',searchMaterials);
+</script>
+</body>
+</html>
+
